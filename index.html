@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en" >
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- Link to icon -->
+        <link rel="stylesheet" href="https://cdn.hugeicons.com/font/hgi-stroke-rounded.css" crossorigin="anonymous" />
+        <!-- Google Fonts - Cairo -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap" rel="stylesheet" />
+        <!-- Import Bootsrap CSS -->
+        <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css" />
+        <title>Tarmeez | Home</title>
+        <!-- Import Bootsrap JS -->
+        <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    </head>
+    <style>
+        * {
+            font-family: "Cairo", sans-serif;
+        }
+        .posts {
+            margin-top: 81px;
+        }
+        .card {
+            cursor: pointer;
+        }
+        .card-header .profile {
+            width: 40px;
+            height: 40px;
+            overflow: hidden;
+        }
+        .profile-ofcanvas .profile {
+            width: 55px;
+            height: 55px;
+            overflow: hidden;
+        }
+        .card-header .profile img,
+        .profile-ofcanvas .profile img {
+            width: 100%;
+        }
+    </style>
+    <body class="bg-body-tertiary">
+        <!-- Start Header -->
+        <header class="position-fixed fixed-top w-100 mt-3">
+            <div class="container">
+                <nav class="navbar navbar-expand-lg bg-body rounded-3 shadow-lg">
+                    <div class="container-fluid">
+                        <a class="navbar-brand" href="#">Tarmeez</a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav">
+                                <li class="nav-item">
+                                    <a class="nav-link active d-flex" aria-current="page" href="index.html"><i class="hgi hgi-stroke hgi-home-01 me-2"></i>Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link d-flex" id="profile" type="button" aria-controls="offcanvasExample"><i class="hgi hgi-stroke hgi-user me-2"></i> Profile</a>
+                                </li>
+                            </ul>
+                            <div class="w-100 d-flex justify-content-end" id="buttons-content">
+                                <button id="login" type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#loginModal" data-bs-whatever="@mdo">LogIn</button>
+                                <button id="register" type="button" class="btn btn-outline-primary btn-sm ms-2" data-bs-toggle="modal" data-bs-target="#registerModal" data-bs-whatever="@mdo">Register</button>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </header>
+        <!-- End Header -->
+        <!-- Start Posts Section -->
+        <section class="posts pt-3 pb-5">
+            <div id="posts" class="container">
+                <div class="d-flex justify-content-center">
+                    <div id="section_of_posts" class="col-12 col-lg-5">
+                        <div class="card rounded-3 shadow-sm my-3 border-0"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End Posts Section -->
+        <!-- Start Login Modal -->
+        <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Login</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">Username</span>
+                                <span class="input-group-text" id="basic-addon1">@</span>
+                                <input type="text" class="form-control" id="username-input" placeholder="username" aria-label="username" aria-describedby="basic-addon1" />
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon3">Password</span>
+                                <input type="password" class="form-control" placeholder="password" id="password-input" aria-describedby="basic-addon3 basic-addon4" />
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">close</button>
+                        <button type="button" class="btn btn-primary btn-sm" data-bs-dismiss="modal" onclick="loginBtnClecked()">login</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Login Modal -->
+        <!-- Start Register Modal -->
+        <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Register</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="input-group mb-3">
+                                <label class="input-group-text" for="inputGroupFile01">Profile Image</label>
+                                <input type="file" id="image-input" class="form-control" id="inputGroupFile01">
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon3">Name</span>
+                                <input type="text" class="form-control" placeholder="name" id="name-input"
+                                    aria-describedby="basic-addon3 basic-addon4" />
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">Username</span>
+                                <span class="input-group-text" id="basic-addon1">@</span>
+                                <input type="text" class="form-control" id="username-input-registar" placeholder="username" aria-label="username" aria-describedby="basic-addon1" />
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon3">Password</span>
+                                <input type="password" class="form-control" placeholder="password" id="password-input-registar" aria-describedby="basic-addon3 basic-addon4" />
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon3">Email</span>
+                                <input type="email" class="form-control" placeholder="email" id="email-input" aria-describedby="basic-addon3 basic-addon4" />
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">close</button>
+                        <button type="button" class="btn btn-primary btn-sm" data-bs-dismiss="modal" onclick="registerClcked()">register</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Register Modal -->
+        <!-- Start New Post Modal -->
+        <div class="modal fade" id="addNewPost" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Post</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-floating mb-3">
+                                <textarea class="form-control" placeholder="Leave a comment here" id="bodyText" style="height: 100px"></textarea>
+                                <label for="bodyText">What are you thinking about?</label>
+                            </div>
+                            <div class="input-group">
+                                <label class="input-group-text" for="inputGroupFile01">Add Image</label>
+                                <input type="file" id="create-post-image-input" class="form-control" id="inputGroupFile01">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">close</button>
+                        <button type="button" class="btn btn-primary btn-sm" data-bs-dismiss="modal" onclick="addNewPost()">create</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End New Post Modal -->
+        <!-- Start Live Toast -->
+        <div class="toast-container position-fixed bottom-0 end-0 p-3">
+            <div id="liveToast" class="toast align-items-center" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="d-flex">
+                    <div id="toast-body" class="toast-body"></div>
+                    <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+            </div>
+        </div>
+        <!-- End Live Toast -->
+        <!-- Start Add New Post Button -->
+        <div class="newPost container fixed-bottom mb-3"></div>
+        <!-- End Add New Post Button -->
+        <!-- Start profile info -->
+        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvas-header">User Information</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body" id="offcanvas-body">
+                <div class="d-flex justify-content-center">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End profile info -->
+        <!-- Get Axios -->
+        <script src="./node_modules/axios/dist/axios.min.js"></script>
+        <!-- Script File -->
+        <script src="mainLogic.js"></script>
+    </body>
+    <script>
+        profile.addEventListener("click", () => {
+            let user = JSON.parse(localStorage.getItem("tarmmezUser"));
+
+            if (!user || !user.id) {
+                const toastEl = document.getElementById('liveToast')
+                const toast = new bootstrap.Toast(toastEl)
+                toastBody.innerHTML = "Error: Please Login First";
+                setTimeout(() => {
+                    toast.show()
+                }, 300)
+                return;
+            }
+
+            showProfileInformation(user.id);
+
+            const offcanvas = new bootstrap.Offcanvas(
+                document.getElementById("offcanvasExample")
+            );
+            offcanvas.show();
+        });
+        showPosts();
+        changeUI();
+    </script>
+</html>
